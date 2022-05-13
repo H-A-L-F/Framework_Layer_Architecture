@@ -7,6 +7,14 @@ import validators.ValidInRange;
 public class Main {
 	private CustPrompt prompt;
 	private ValidInRange validInRange;
+	private Restaurant restaurant;
+	
+	public static Main main;
+	
+	private Main() {
+		prompt = new CustPrompt();
+		validInRange = new ValidInRange(0, 0);
+	}
 	
 	private void clear() {
 		for(int i = 0; i < 25; i++) System.out.println();
@@ -53,7 +61,8 @@ public class Main {
 				
 				String restName = prompt.getString("Input restaurant name [3..15]", validInRange.setMinMax(3, 15));
 				
-				Restaurant.getCurrRestaurant(restName);
+				restaurant = Restaurant.getCurrRestaurant(restName);
+				restaurant.start();
 				
 				break;
 			}
@@ -83,14 +92,39 @@ public class Main {
 		return prompt.getInt("Input menu [1..3] : ", validInRange.setMinMax(1, 3));
 	}
 	
-	public Main() {
-		prompt = new CustPrompt();
-		validInRange = new ValidInRange(0, 0);
+	public void menuPause() {
+		int opt = 0;
+		boolean run = true;
 		
-		init();
+		while (run) {
+			clear();
+			titlePause();
+			restaurant.printStats();
+			
+			opt = optPause();
+			
+			switch (opt) {
+			case 1: {
+				// CONTINUE BUSINESS
+				System.out.println("Continue...");
+				restaurant.continueBusiness();
+				break;
+			}
+			case 2: {
+				// UPGRADE RESTAURANT
+				break;
+			}
+			default: {
+				// CLOSE BUSINESS
+				break;
+			}
+			}
+		}
 	}
 	
 	public static void main(String[] args) {
-		new Main();
+		Main.main = new Main();
+		
+		Main.main.init();
 	}
 }
