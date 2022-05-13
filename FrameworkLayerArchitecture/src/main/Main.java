@@ -52,6 +52,7 @@ public class Main {
 				String restName = prompt.getString("Input restaurant name [3..15]", new ValidInRange(3, 15));
 				
 				
+				
 				break;
 			}
 			case 2: {
