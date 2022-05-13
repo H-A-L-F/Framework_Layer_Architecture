@@ -29,4 +29,9 @@ public class CustPrompt {
 		} while (!validator.isValidString(ret));
 		return ret;
 	}
+	
+	public void pressEnter() {
+		System.out.println("Press Enter to Continue ...");
+		in.nextLine();
+	}
 }

@@ -66,6 +66,29 @@ public class Main {
 		}
 	}
 	
+	private void titlePause() {
+		System.out.println();
+		System.out.println("Pause Menu ==============");
+		System.out.println();
+	}
+	
+	private void printStats() {
+		System.out.println();
+		System.out.printf("Status");
+		System.out.println("Money : Rp. " + 123);
+		System.out.println("Score : " + 1232 + " Points");
+		System.out.println("Size  : " + 3 + " Seats");
+		System.out.println();
+	}
+	
+	private int optPause() {
+		System.out.println("1. Continue Business");
+		System.out.println("2. Upgrade Restaurant");
+		System.out.println("3. Close Business");
+		
+		return prompt.getInt("Input menu [1..3] : ", new ValidInRange(1, 3));
+	}
+	
 	public Main() {
 		prompt = new CustPrompt();
 		
