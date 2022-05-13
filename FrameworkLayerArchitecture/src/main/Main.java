@@ -53,7 +53,7 @@ public class Main {
 				
 				String restName = prompt.getString("Input restaurant name [3..15]", validInRange.setMinMax(3, 15));
 				
-				
+				Restaurant.getCurrRestaurant(restName);
 				
 				break;
 			}
@@ -72,15 +72,6 @@ public class Main {
 	private void titlePause() {
 		System.out.println();
 		System.out.println("Pause Menu ==============");
-		System.out.println();
-	}
-	
-	private void printStats() {
-		System.out.println();
-		System.out.printf("Status");
-		System.out.println("Money : Rp. " + 123);
-		System.out.println("Score : " + 1232 + " Points");
-		System.out.println("Size  : " + 3 + " Seats");
 		System.out.println();
 	}
 	

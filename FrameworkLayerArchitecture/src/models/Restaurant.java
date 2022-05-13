@@ -2,29 +2,56 @@ package models;
 
 import utils.RandInitial;
 
-public class Restaurant {
+import states.StatePause;
+
+public class Restaurant extends Entity implements Runnable{
 	private RandInitial initialStorage;
-	private String name;
+	
 	private int money, score, size;
+	
+	private Thread t;
+	private String tName;
 	
 	public static Restaurant currRestaurant;
 
 	private Restaurant(String name, int money, int score, int size) {
-		super();
+		super(name);
 		this.initialStorage = new RandInitial();
-		this.name = name;
 		this.money = money;
 		this.score = score;
 		this.size = size;
+		
+		setState(new StatePause(this));
 	}
 	
 	private Restaurant(String name) {
-		super();
+		super(name);
 		this.initialStorage = new RandInitial();
-		this.name = name;
 		this.money = 1300; 
 		this.score = 0;
 		this.size = 4;
+		
+		setState(new StatePause(this));
+	}
+	
+	public void initThread() {
+		tName = "Master Thread";
+		System.out.println("Creating " + tName);
+	}
+	
+	@Override
+	public void run() {
+		// TUGAS GAME MASTER
+		// PRINT GAME VIEW
+		System.out.println("Playing");
+	}
+	
+	public void start() {
+		System.out.println("Starting " + tName);
+		if(t == null) {
+			t = new Thread(this, tName);
+			t.start();
+		}
 	}
 	
 	public static Restaurant getCurrRestaurant(String name, int money, int score, int size) {
@@ -37,12 +64,13 @@ public class Restaurant {
 		return Restaurant.currRestaurant;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+	private void printStats() {
+		System.out.println();
+		System.out.printf("Status");
+		System.out.println("Money : Rp. " + this.money);
+		System.out.println("Score : " + this.score + " Points");
+		System.out.println("Size  : " + this.size + " Seats");
+		System.out.println();
 	}
 
 	public int getMoney() {
