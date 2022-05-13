@@ -8,6 +8,12 @@ public class ValidInRange implements Validator{
 		this.min = min;
 		this.max = max;
 	}
+	
+	public ValidInRange setMinMax(int min, int max) {
+		this.min = min;
+		this.max = max;
+		return this;
+	}
 
 	@Override
 	public boolean isValidInt(int in) {

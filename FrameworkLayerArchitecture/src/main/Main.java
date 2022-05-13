@@ -1,10 +1,12 @@
 package main;
 
+import models.Restaurant;
 import utils.CustPrompt;
 import validators.ValidInRange;
 
 public class Main {
-	CustPrompt prompt;
+	private CustPrompt prompt;
+	private ValidInRange validInRange;
 	
 	private void clear() {
 		for(int i = 0; i < 25; i++) System.out.println();
@@ -32,7 +34,7 @@ public class Main {
 		System.out.println("2. High Score");
 		System.out.println("3. Exit");
 		
-		return prompt.getInt("Input menu [1..3]", new ValidInRange(1, 3));
+		return prompt.getInt("Input menu [1..3]", validInRange.setMinMax(1, 3));
 	}
 	
 	private void menuHome() {
@@ -49,7 +51,7 @@ public class Main {
 			case 1: {
 				// PLAY NEW RESTAURANT
 				
-				String restName = prompt.getString("Input restaurant name [3..15]", new ValidInRange(3, 15));
+				String restName = prompt.getString("Input restaurant name [3..15]", validInRange.setMinMax(3, 15));
 				
 				
 				
@@ -87,11 +89,12 @@ public class Main {
 		System.out.println("2. Upgrade Restaurant");
 		System.out.println("3. Close Business");
 		
-		return prompt.getInt("Input menu [1..3] : ", new ValidInRange(1, 3));
+		return prompt.getInt("Input menu [1..3] : ", validInRange.setMinMax(1, 3));
 	}
 	
 	public Main() {
 		prompt = new CustPrompt();
+		validInRange = new ValidInRange(0, 0);
 		
 		init();
 	}

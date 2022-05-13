@@ -1,0 +1,13 @@
+Strategy:
+	- Problem:
+		-> User memberikan input kemudian kita bertugas memvalidasi input, dan
+			terus meminta user input hingga input yang diberikkan benar.
+			Masalahnya ketentuan apakah suatu input dapat dikatakan valid beragam.
+			Kita harus membuat / mengubah fungsi lain setiap ada validasi baru.
+	- Solution:
+		-> Membuat interface Validator yang kemudian di implement oleh setiap
+			jenis validasi, sehingga jika kita ingin mengubah validasi yang ingin
+			digunakan kita tinggal berikan subclass validator yang lain.
+	- Classes (involved):
+		-> Main, CustPrompt, Validator, ValidInRange
+
